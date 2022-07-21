@@ -4,29 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoundMinmax
+namespace MINMAX
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] a= new int[2];
+            int[] a = new int[2];
             int[] b = new int[2];
-            int[] arr = { 19, 13, 12, 14, 15, 16, 17, 18, 11, 20 };
-            Console.WriteLine(arr.Length);
-            a=FoundMinmax(arr,a);
-            Console.WriteLine("Max :" + a[0] + " Min :" + a[1]);
+            int[] arr = { 11, 12, 20, 19, 13, 14, 18, 17, 15, 16 };
+            a=FindMinMax(arr,a);
+            Console.WriteLine("min : "+a[0] + "  max :" + a[1]);
 
-            b=MinMax2.FoundMinmax1(arr,b);
-            Console.WriteLine("Max :" + b[0] + " Min :" + b[1]);
+            b=MinMax1.minMax1(arr,b);
+            Console.WriteLine("min : " + b[0] + "  max :" + b[1]);
+            
             Console.ReadLine();
         }
-        public static int[] FoundMinmax(int[] arr, int[]a)
+        public static int[] FindMinMax(int[] arr, int[]a)
         {
-            int var1=arr.Max();
-            a[0] = var1;
-            int var2 = arr.Min();
-            a[1] = var2;
+            int min = int.MaxValue;
+            int max = int.MinValue;
+            for(int i=0; i<arr.Length; i++)
+            {
+                if(arr[i] < min)
+                {
+                    min = arr[i];
+                    a[0] = min;
+                }
+
+                if(arr[i] > max)
+                {
+                    max = arr[i];
+                    a[1] = max;
+                }
+            }
             return a;
         }
     }
